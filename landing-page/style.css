@@ -1,0 +1,176 @@
+body {
+  margin: 0 150px;
+  background-color: #1f2937;
+  color: white;
+  font-family: sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 24px;
+  color: #f9faf8;
+  font-weight: bold;
+}
+
+.right-links {
+  display: flex;
+  gap: 16px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  color: #e5e7eb;
+  font-size: 18px;
+}
+
+.sectionone {
+  margin: 100px 0px;
+}
+
+.maintext {
+  font-size: 48px;
+  font-weight: bolder;
+  color: #f9faf8;
+  overflow-wrap: normal;
+  width: 500px;
+}
+
+.secondarytext {
+  font-size: 18px;
+  color: #e5e7eb;
+  overflow-wrap: normal;
+  width: 500px;
+}
+
+button {
+  background-color: #3882f6;
+  color: white;
+  font-size: 16px;
+  padding: 8px 32px;
+  margin-top: 16px;
+  border-radius: 6px;
+  text-align: center;
+  border: none;
+}
+
+.sectiontwo {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.infoheader {
+  color: #1f2937;
+  font-size: 36px;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin-top: 32px;
+}
+
+.infosquares {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+}
+
+.square {
+  height: 150px;
+  width: 150px;
+  border: solid 4px #3882f6;
+  border-radius: 20px;
+}
+
+.subtext {
+  font-size: 16px;
+  color: #5f6266;
+  width: 150px;
+  text-align: center;
+  margin-top: 12px;
+}
+
+.sectionthree {
+  background-color: #e5e7eb;
+  color: #1f2937;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.quote {
+  font-size: 36px;
+  font-style: italic;
+  font-weight: lighter;
+  width: 800px;
+}
+
+.attribution {
+  text-align: right;
+  font-size: 18px;
+  padding-right: 48px;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.sectionfour {
+  background-color: white;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.actionbox {
+  background-color: #3882f6;
+  width: 800px;
+  padding: 50px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.actiontextheader {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.actiontextsubtext {
+  font-size: 18px;
+  color: #e5e7eb;
+}
+
+.actionbutton {
+  border: 2px solid white;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  color: #e5e7eb;
+  font-size: 18px;
+  padding: 24px;
+}
