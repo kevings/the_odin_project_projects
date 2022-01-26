@@ -1,0 +1,19 @@
+:root {
+  --grid-size: 10px;
+}
+.drawBlocks {
+  width: var(--grid-size);
+  height: var(--grid-size);
+  background-color: aqua;
+}
+
+.colorBlocks {
+  background-color: yellow;
+}
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  width: 320px;
+  height: 320px;
+}
