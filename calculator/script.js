@@ -1,7 +1,3 @@
-// to do list:
-// if 0 is first number, don't show it
-// if user divides by 0, do something
-
 let displayValue = 0;
 let oldValue = 0;
 let newValue = 0;
@@ -26,11 +22,13 @@ clearBtn.addEventListener('click', clear);
 function addNumberToDisplay(){
     let currentBtn = this.textContent;
     canCompute = true;
-    if(needNewValue){
+    if(needNewValue || display.textContent == '0') {
         display.textContent = currentBtn;
         displayValue = parseInt(display.textContent);
         needNewValue = false;
-    } else {
+    } 
+    else 
+    {
         let newDisplay = display.textContent.concat(currentBtn);
         display.textContent = newDisplay;
         displayValue = parseInt(display.textContent);
@@ -39,7 +37,6 @@ function addNumberToDisplay(){
 
 function storeOperator(){
     if(firstOperator && oldValue && canCompute){
-        console.log("have an operator already");
         secondOperator = this.id;
         calculate();
     } else {
@@ -51,22 +48,21 @@ function storeOperator(){
 
 function calculate(){
     if(canCompute && firstOperator){
-        if(firstOperator === "divide" && newValue === 0){
-            display.textContent = "lol";
-        }
-        else {
-            newValue = displayValue;
-            oldValue = operate(firstOperator, oldValue, newValue);
-            display.textContent = oldValue;
-            displayValue = oldValue;
-            if(secondOperator) {
-                firstOperator = secondOperator;
-                secondOperator = "";
-            }
+        newValue = displayValue;
+        oldValue = operate(firstOperator, oldValue, newValue);
+        display.textContent = oldValue;
+        displayValue = oldValue;
+        canCompute = false;
+        if(secondOperator) {
+            firstOperator = secondOperator;
+            secondOperator = "";
         }
     }
+    if(needNewValue){
+        firstOperator = "";
+        secondOperator = "";
+    }
     needNewValue = true;   
-    canCompute = false;
 }
 
 function add(a,b) {
@@ -103,10 +99,11 @@ function operate(op,a,b){
 }
 
 function clear(){
-    display.textContent = ' ';
+    display.textContent = '0';
     oldValue = null;
     newValue = null;
     displayValue = null;
     firstOperator = "";
     secondOperator = "";
+    needNewValue = true;
 }
