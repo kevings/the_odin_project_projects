@@ -1,31 +1,27 @@
 // to do list:
 // if 0 is first number, don't show it
 // if user divides by 0, do something
-// make second operand so it doesn't get confused
-
-const DEFAULT_VALUE = 0;
 
 let displayValue = 0;
-
 let oldValue = 0;
 let newValue = 0;
-let operand = "";
+let firstOperator = "";
+let secondOperator = "";
 
-let needNewValue = false;
-let canCompute = true;
+let needNewValue = true;
+let canCompute = false;
 
 const display = document.getElementById('display');
 
 const numberBtn = document.querySelectorAll('.number');
-const operandBtn = document.querySelectorAll('.operator');
-const equalsBtn = document.getElementById('operate');
+const operatorBtn = document.querySelectorAll('.operator');
+const operateBtn = document.getElementById('operate');
 const clearBtn = document.getElementById('clear');
 
-clearBtn.addEventListener('click', clear);
-
 numberBtn.forEach(button => button.addEventListener('click', addNumberToDisplay));
-operandBtn.forEach(button => button.addEventListener('click', storeOperator));
-equalsBtn.addEventListener('click', calculate);
+operatorBtn.forEach(button => button.addEventListener('click', storeOperator));
+operateBtn.addEventListener('click', calculate);
+clearBtn.addEventListener('click', clear);
 
 function addNumberToDisplay(){
     let currentBtn = this.textContent;
@@ -42,23 +38,35 @@ function addNumberToDisplay(){
 }
 
 function storeOperator(){
-    operand = this.id;
-    needNewValue = true;
-    if (oldValue && canCompute){
+    if(firstOperator && oldValue && canCompute){
+        console.log("have an operator already");
+        secondOperator = this.id;
         calculate();
+    } else {
+        firstOperator = this.id;
     }
+    needNewValue = true;
     oldValue = displayValue;
 }
 
 function calculate(){
-        newValue = displayValue;
-        oldValue = operator(operand, oldValue, newValue);
-        display.textContent = oldValue;
-        displayValue = oldValue;
-        console.log("oldValue " + oldValue);
-        console.log("newValue " + newValue);
-        console.log("displayValue " + displayValue);
-        canCompute = false;
+    if(canCompute && firstOperator){
+        if(firstOperator === "divide" && newValue === 0){
+            display.textContent = "lol";
+        }
+        else {
+            newValue = displayValue;
+            oldValue = operate(firstOperator, oldValue, newValue);
+            display.textContent = oldValue;
+            displayValue = oldValue;
+            if(secondOperator) {
+                firstOperator = secondOperator;
+                secondOperator = "";
+            }
+        }
+    }
+    needNewValue = true;   
+    canCompute = false;
 }
 
 function add(a,b) {
@@ -77,7 +85,7 @@ function divide(a,b) {
     return a / b;
 }
 
-function operator(op,a,b){
+function operate(op,a,b){
     if(canCompute){
         if(op === 'add'){
             return add(a,b);
@@ -99,5 +107,6 @@ function clear(){
     oldValue = null;
     newValue = null;
     displayValue = null;
-    operand = "";
+    firstOperator = "";
+    secondOperator = "";
 }
