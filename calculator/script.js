@@ -21,8 +21,7 @@ clearBtn.addEventListener('click', clear);
 
 function addNumberToDisplay(){
     let currentBtn = this.textContent;
-    canCompute = true;
-    if(needNewValue || display.textContent == '0') {
+    if(needNewValue || display.textContent == '0' || display.textContent == 'lol') {
         display.textContent = currentBtn;
         displayValue = parseInt(display.textContent);
         needNewValue = false;
@@ -33,14 +32,16 @@ function addNumberToDisplay(){
         display.textContent = newDisplay;
         displayValue = parseInt(display.textContent);
     }
+    canCompute = true;
 }
 
 function storeOperator(){
-    if(firstOperator && oldValue && canCompute){
+    if(firstOperator && oldValue && canCompute && !needNewValue){
         secondOperator = this.id;
         calculate();
     } else {
         firstOperator = this.id;
+        canCompute = true;
     }
     needNewValue = true;
     oldValue = displayValue;
@@ -49,10 +50,17 @@ function storeOperator(){
 function calculate(){
     if(canCompute && firstOperator){
         newValue = displayValue;
-        oldValue = operate(firstOperator, oldValue, newValue);
-        display.textContent = oldValue;
-        displayValue = oldValue;
-        canCompute = false;
+        if (firstOperator == "divide" && newValue == 0){
+            clear();
+            display.textContent = "lol";
+        } else {
+            let tempValue = operate(firstOperator, oldValue, newValue);
+            oldValue = tempValue;
+            display.textContent = oldValue;
+            displayValue = oldValue;
+            newValue = null;
+            canCompute = false;
+        }
         if(secondOperator) {
             firstOperator = secondOperator;
             secondOperator = "";
@@ -94,6 +102,7 @@ function operate(op,a,b){
         }
         if(op === 'divide'){
             return divide(a,b);
+            
         }
     }
 }
